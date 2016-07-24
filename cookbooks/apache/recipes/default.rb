@@ -7,15 +7,15 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "apache2" do 
+package node["package_name"] do 
 	action :install
 end
 
-service "apache2" do 
+service node["service_name"] do 
 	action [ :enable, :start]
 end
 
-cookbook_file "/var/www/index.html" do 
-	source "index.html"
+template "#{node["document_root"]}/index.html" do 
+	source "index.html.erb"
 	mode "0644"
 end
